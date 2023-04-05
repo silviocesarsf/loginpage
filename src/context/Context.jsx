@@ -10,6 +10,12 @@ export const Context = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const errorMessage = "Verifique os dados e tente novamente.";
 
+	const userData = {
+		nameUser: localStorage.getItem("user_name"),
+		emailUser: localStorage.getItem("user_email"),
+		passwordUser: localStorage.getItem("user_password"),
+	};
+
 	return (
 		<ContextProvider.Provider
 			value={{
@@ -21,7 +27,8 @@ export const Context = ({ children }) => {
 				setIsLogged,
 				errorMessage,
 				isLoading,
-				setIsLoading
+				setIsLoading,
+				userData,
 			}}
 		>
 			{children}

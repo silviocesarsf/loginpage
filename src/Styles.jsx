@@ -19,6 +19,14 @@ export const Section = styled.section`
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
+
+	.logged-page {
+		min-height: 80vh;
+		min-width: 30vw;
+		box-shadow: 1px 1px 2px #c1c1c1;
+		background: #ffffff;
+		border-radius: 10px;
+	}
 `;
 
 export const Container = styled.div`
@@ -46,15 +54,16 @@ export const Container = styled.div`
 		justify-content: center;
 		cursor: pointer;
 	}
-	/* .password-login_container input {
-		position: relative;
-	} */
 
 	.icon-input_email,
 	.icon-input_password,
 	.icon-input_name {
 		position: relative;
 		right: 50px;
+	}
+
+	.infos-logged_user {
+		text-align: center;
 	}
 `;
 

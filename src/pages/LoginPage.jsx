@@ -33,13 +33,8 @@ export default function LoginPage() {
 		errorMessage,
 		isLoading,
 		setIsLoading,
+		userData,
 	} = useContext(ContextProvider);
-
-	const userData = {
-		nameUser: localStorage.getItem("user_name"),
-		emailUser: localStorage.getItem("user_email"),
-		passwordUser: localStorage.getItem("user_password"),
-	};
 
 	const handleEmail = (e) => {
 		setEmail(e.target.value);
@@ -57,19 +52,33 @@ export default function LoginPage() {
 		) {
 			setIsLoading(true);
 			setTimeout(() => {
+				setIsLogged(true);
 				setIsLoading(false);
 				navigate("/home");
 			}, 1600);
-		}
-		if (
+		} else if (
 			email === "" ||
 			password === "" ||
-			email.length < 0 ||
-			password.length < 0
+			email !== userData.emailUser ||
+			password !== userData.passwordUser
 		) {
-			return alert("ERRO PORRA");
+			return toast.error(errorMessage, {
+				position: "top-right",
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: false,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
 		}
 	};
+
+	useEffect(() => {
+		setEmail(null);
+		setPassword(null);
+	}, []);
 
 	return (
 		<Section bg={bg}>
@@ -83,7 +92,6 @@ export default function LoginPage() {
 			>
 				<Container dir="column" gap="2rem" className="card">
 					<Title>Login</Title>
-					{isLogged ? "estou logado" : "Nao estou logado"}
 					<div className="password-login_container">
 						<Input
 							onChange={handleEmail}

@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextProvider } from "../context/Context";
-import { Button } from "../Styles";
+import { Button, Container, Section, Title } from "../Styles";
+import bg from "../assets/wave.png";
 
 export default function LoggedPage() {
-	const { isLogged, setIsLogged, email, password } =
+	const { isLogged, setIsLogged, userData } =
 		useContext(ContextProvider);
 
 	const navigate = useNavigate();
@@ -18,14 +19,24 @@ export default function LoggedPage() {
 		}
 	};
 
-	useEffect(() => {
-		setIsLogged(true);
-	}, []);
-
 	return (
-		<div>
-			{isLogged && <span>Voce esta logado !</span>}
-			<Button onClick={exitSession}>Sair</Button>
-		</div>
+		<Section bg={bg}>
+			<Container
+				className="logged-page"
+				dir="column"
+				justify="space-around"
+			>
+				<Title>Bem vindo !</Title>
+				<div className="infos-logged_user">
+					<div className="name-logged_user">
+						<h2>Olá {userData.nameUser}!</h2>
+					</div>
+					<div className="email-logged_user">
+						<h3>Seu email é: {userData.emailUser}</h3>
+					</div>
+				</div>
+				<Button onClick={exitSession}>Sair</Button>
+			</Container>
+		</Section>
 	);
 }
