@@ -21,11 +21,8 @@ export const Section = styled.section`
 	}
 
 	.logged-page {
-		min-height: 80vh;
-		min-width: 30vw;
-		box-shadow: 1px 1px 2px #c1c1c1;
-		background: #ffffff;
-		border-radius: 10px;
+		min-height: 100vh;
+		min-width: 100%;
 	}
 `;
 

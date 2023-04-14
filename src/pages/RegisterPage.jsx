@@ -22,20 +22,13 @@ import { BiUser } from "react-icons/bi";
 
 export default function RegisterPage() {
 	const navigate = useNavigate();
-	const {
-		email,
-		setEmail,
-		password,
-		setPassword,
-		isLogged,
-		setIsLogged,
-		errorMessage,
-	} = useContext(ContextProvider);
+	const { email, setEmail, password, setPassword, errorMessage } =
+		useContext(ContextProvider);
 
 	const [name, setName] = useState("");
 
 	const registerUser = () => {
-		if (!email || !name || !password || name.length < 10) {
+		if (!email || !name || !password || email.length < 10 || name.length < 10 || password.length < 5) {
 			return toast.error(errorMessage, {
 				position: "top-right",
 				autoClose: 2000,
@@ -95,6 +88,7 @@ export default function RegisterPage() {
 							type="email"
 							placeholder="Digite seu email"
 							autoFocus
+							required="required"
 						/>
 						<AiOutlineMail className="icon-input_email" />
 					</div>
@@ -103,6 +97,7 @@ export default function RegisterPage() {
 							onChange={(e) => setPassword(e.target.value)}
 							type="password"
 							placeholder="Digite sua senha"
+							required="required"
 						/>
 						<BsKey className="icon-input_password" />
 					</div>
@@ -111,6 +106,7 @@ export default function RegisterPage() {
 							onChange={(e) => setName(e.target.value)}
 							type="text"
 							placeholder="Digite seu nome"
+							required="required"
 						/>
 						<BiUser className="icon-input_name" />
 					</div>
